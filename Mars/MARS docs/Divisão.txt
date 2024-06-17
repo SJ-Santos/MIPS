@@ -1,0 +1,20 @@
+ #divisao,teoricamente certo
+ add $t0,$zero,$zero #contador / resultado
+ addi $t1,$zero,100 #dividendo
+ addi $t2,$zero,3  #divisor
+ 
+  J Div #vai para a função de divisão
+    
+   Div:  
+     slt  $t3,$t1,$t2 #compara o dividendo($t1) para ver se é menor que o divisor($t2) se for ele coloca 1 em $t3
+     beq  $t3,1,end   #se for menor (Condição acima) ele compara com para ver se é verdadade
+     sub $t1,$t1,$t2   #subtrai o dividendo com o divisor e coloca no dividendo ex : $t1 = $t1-$t2
+     addi $t0,$t0,1   # adiciona 1 no contador /resultado
+     J Div  # loop recursivo ate a condição da linha 10 ser atingida 
+     
+     end:
+     add $v0,$zero,$t0 #coloca o valor de $t0,em $v0
+     
+     #OBS : caso o resultado seja decimal em divisao real,ele arredonda para baixo, ou seja desconsidera o resto 
+     #OBS2 : caso queria arredondar para cima coloque addi $t0,$t0,1 antes da linha  16 , ou addi $v0,$v0,1 depois da linha 16
+     

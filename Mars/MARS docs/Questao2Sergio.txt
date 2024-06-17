@@ -1,0 +1,24 @@
+ 
+addi $t0,$zero,20 #contador
+addi $t1,$zero,1  #valor base 
+addi $t2, $zero,3 #razão
+add $t3,$zero,$zero #qtd numeros 
+add $t4,$zero,$zero #soma de qtd
+
+   J loop1 # funçao de loop 
+    
+    loop1:
+       add $t1,$t1,$t2 # soma $t1 e $t2 , e coloca em $t1, ex $t1 =$t1+3($t2)
+       addi $t3,$t3,1 # adiciona 1 ao qtd de numeros ex $t3 =$t3+1
+       add $t4,$t4,$t1 # faz a soma de $t4 e #t1, soma dos numeros  ex = $t4 = $t4+$t1
+       slt $t5,$t0,$t1   # compara se $t0 é menor que $t1
+       beq $t5,1,end  # caso $t0,for menor que $t1, $t5 recebe 1 e vai para po fim   
+       
+       J loop1 # loop recurssivo 
+
+  end:
+  add $v0,$zero,$t3 #pega o valor de $t3(qtd de numeros ) e coloca em $v0
+  add $v1,$zero,$t4 #pega o valor de $t4(soma dos numeros  ) e coloca em $v1
+   
+
+  
